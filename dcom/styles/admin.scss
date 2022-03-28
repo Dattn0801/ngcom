@@ -1,4 +1,5 @@
 //Base config
+@import '~normalize.css/normalize.css';
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
@@ -9,6 +10,8 @@
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
 
+//Shared
+@import './apps/admin/shell.scss';
 //Update primeng => upadte configuration
 @import './base/configuration.scss';
 
