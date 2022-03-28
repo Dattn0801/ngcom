@@ -1,15 +1,21 @@
+//Base config
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
 
-@import './base/configuration.scss';
 //Libraries
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/themes/lara-light-blue/theme.css';
 @import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.css';
+
+//Update primeng => upadte configuration
+@import './base/configuration.scss';
+
 //Pages
 @import './apps/shop/pages/home-page.scss';
 @import './apps/shop/pages/product-list-page.scss';
+
 //Shared
 @import './apps/shop/shared/header.scss';
 @import './apps/shop/shared/footer.scss';
