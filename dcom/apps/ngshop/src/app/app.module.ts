@@ -8,6 +8,9 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@dcom/ui';
+
+import { AccordionModule } from 'primeng/accordion';
+import { ButtonModule } from 'primeng/button';
 const routes: Routes = [
     { path: '', component: HomePageComponent },
     { path: 'products', component: ProductListComponent }
@@ -20,7 +23,7 @@ const routes: Routes = [
         HeaderComponent,
         FooterComponent
     ],
-    imports: [BrowserModule, RouterModule.forRoot(routes), UiModule],
+    imports: [BrowserModule, RouterModule.forRoot(routes), UiModule, AccordionModule, ButtonModule],
     providers: [],
     bootstrap: [AppComponent]
 })
