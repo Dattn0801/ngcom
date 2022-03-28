@@ -1,7 +1,7 @@
 <div class="admin-page">
     <p-card header="Categories" subheader="List of all categories">
         <div class="grid">
-            <div class="col-6">
+            <div class="col-12">
                 <p-toolbar>
                     <div class="p-toolbar-group-left">
                         <p-button
@@ -9,13 +9,14 @@
                             icon="pi pi-plus"
                             styleClass="p-button-primary p-button-sm"
                             class="sm"
+                            routerLink="form"
                         ></p-button>
                     </div>
                 </p-toolbar>
             </div>
         </div>
-        <div class="grid">
-            <div class="col-12">
+        <div class="p-grid">
+            <div class="p-col-12">
                 <p-table
                     [value]="categories"
                     styleClass="p-datatable-gridlines"
