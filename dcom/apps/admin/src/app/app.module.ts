@@ -20,7 +20,22 @@ import { CategoriesFormComponent } from './categories/categories-form/categories
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule];
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+//AnimationModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const UX_MODULE = [
+    CardModule,
+    ToolbarModule,
+    ButtonModule,
+    TableModule,
+    InputTextModule,
+    ToastModule,
+    ConfirmDialogModule
+];
 const routes: Routes = [
     {
         path: '',
@@ -28,21 +43,30 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'categories', component: CategoriesListComponent },
-            { path: 'categories/form', component: CategoriesFormComponent }
+            { path: 'categories/form', component: CategoriesFormComponent },
+            { path: 'categories/form/:id', component: CategoriesFormComponent }
         ]
     }
 ];
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        ShellComponent,
+        SidebarComponent,
+        CategoriesListComponent,
+        CategoriesFormComponent
+    ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
         ...UX_MODULE
     ],
-    providers: [CategoriesService],
+    providers: [CategoriesService, MessageService, ConfirmationService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
