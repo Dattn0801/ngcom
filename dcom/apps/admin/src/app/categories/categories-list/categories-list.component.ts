@@ -21,30 +21,29 @@ export class CategoriesListComponent implements OnInit {
     }
     deleteCategory(categoryId: string) {
         this.confirmationService.confirm({
-            message: 'Do you want to delete this category',
-            header: 'Delete Category',
+            message: 'Bạn có muốn xóa danh mục này không',
+            header: 'Xóa danh mục',
             icon: 'pi pi-exclamation-triangle',
+            acceptLabel: 'Có',
+            rejectLabel: 'Không',
             accept: () => {
                 this.categoriesService.deleteCategory(categoryId).subscribe(
-                    (response) => {
+                    (category: Category) => {
                         this._getCategories();
                         this.messageService.add({
                             severity: 'success',
-                            summary: 'Success',
-                            detail: 'Category is deleted'
+                            summary: 'Thành công',
+                            detail: `Danh mục ${category.name} đã được xóa`
                         });
                     },
-                    (error) => {
+                    () => {
                         this.messageService.add({
                             severity: 'error',
-                            summary: 'Error',
-                            detail: 'Category is not deleted'
+                            summary: 'Lỗi',
+                            detail: 'Danh mục không được xóa'
                         });
                     }
                 );
-            },
-            reject: () => {
-                //reject action
             }
         });
     }

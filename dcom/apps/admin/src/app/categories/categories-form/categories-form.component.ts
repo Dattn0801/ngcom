@@ -26,7 +26,8 @@ export class CategoriesFormComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
-            icon: ['', Validators.required]
+            icon: ['', Validators.required],
+            color: ['#fff']
         });
         this._checkEditMode();
     }
@@ -41,7 +42,8 @@ export class CategoriesFormComponent implements OnInit {
         const category: Category = {
             id: this.currentCategoryId,
             name: this.categoryForm['name'].value,
-            icon: this.categoryForm['icon'].value
+            icon: this.categoryForm['icon'].value,
+            color: this.categoryForm['color'].value
         };
         if (this.editMode) {
             this._updateCategory(category);
@@ -51,22 +53,22 @@ export class CategoriesFormComponent implements OnInit {
     }
     private _addCategory(category: Category) {
         this.categoriesService.createCategory(category).subscribe(
-            (response) => {
+            (category: Category) => {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Thành công',
-                    detail: 'Danh mục đã được tạo'
+                    detail: `Danh mục ${category.name} đã được tạo`
                 });
                 timer(2000)
                     .toPromise()
-                    .then((done) => {
+                    .then(() => {
                         this.location.back();
                     });
             },
-            (error) => {
+            () => {
                 this.messageService.add({
                     severity: 'error',
-                    summary: 'Thất bại',
+                    summary: 'Lỗi',
                     detail: 'Không thể tạo danh mục'
                 });
             }
@@ -74,22 +76,22 @@ export class CategoriesFormComponent implements OnInit {
     }
     private _updateCategory(category: Category) {
         this.categoriesService.updateCategory(category).subscribe(
-            (response) => {
+            (category: Category) => {
                 this.messageService.add({
                     severity: 'success',
-                    summary: 'Success',
-                    detail: 'Danh mục đã được chỉnh sửa'
+                    summary: 'Thành công',
+                    detail: `Danh mục${category.name} đã được chỉnh sửa`
                 });
                 timer(2000)
                     .toPromise()
-                    .then((done) => {
+                    .then(() => {
                         this.location.back();
                     });
             },
-            (error) => {
+            () => {
                 this.messageService.add({
                     severity: 'error',
-                    summary: 'Error',
+                    summary: 'Lỗi',
                     detail: 'Danh mục không thể chỉnh sửa'
                 });
             }
@@ -103,6 +105,7 @@ export class CategoriesFormComponent implements OnInit {
                 this.categoriesService.getCategory(params['id']).subscribe((category) => {
                     this.categoryForm['name'].setValue(category.name);
                     this.categoryForm['icon'].setValue(category.icon);
+                    this.categoryForm['color'].setValue(category.color);
                 });
             }
         });
