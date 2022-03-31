@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card header="Danh mục" subheader="List of all categories">
+    <p-card header="Sản phẩm" subheader="Danh sách sản phẩm">
         <div class="grid">
             <div class="col-12">
                 <p-toolbar>
@@ -19,54 +19,56 @@
         <div class="p-grid">
             <div class="p-col-12">
                 <p-table
-                    [value]="categories"
+                    [value]="products"
                     styleClass="p-datatable-gridlines"
                     responsiveLayout="scroll"
                 >
                     <ng-template pTemplate="header">
                         <tr>
-                            <th pSortableColumn="name" colspan="2">
+                            <th pSortableColumn="name">
                                 Tên<p-sortIcon field="name"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="icon">
-                                Icon<p-sortIcon field="icon"></p-sortIcon>
+                            <th pSortableColumn="price">
+                                Ảnh<p-sortIcon field="price"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="color">
-                                Màu<p-sortIcon field="color"></p-sortIcon>
+                            <th pSortableColumn="price">
+                                Giá<p-sortIcon field="price"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="stock">
+                                Số lượng<p-sortIcon field="stock"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="category">
+                                Danh mục<p-sortIcon field="category"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="created">
+                                Ngày tạo<p-sortIcon field="created"></p-sortIcon>
                             </th>
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-category>
+                    <ng-template pTemplate="body" let-product>
                         <tr>
-                            <td colspan="2">{{ category.name }}</td>
+                            <td>{{ product.name }}</td>
+                            <td><img [src]="product.image" style="width: 100%" alt="" /></td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.countInStock }}</td>
+
+                            <!-- <td>{{ product.category.name }}</td> -->
+                            <td>{{ product.dateCreated | date: 'short' }}</td>
+
                             <td>
-                                <i
-                                    style="font-size: 2rem"
-                                    class="pi"
-                                    [ngClass]="'pi-' + category.icon"
-                                ></i>
-                            </td>
-                            <td>
-                                <i
-                                    class="pi pi-circle-on"
-                                    style="font-size: 2rem"
-                                    [ngStyle]="{ color: category.color }"
-                                ></i>
-                            </td>
-                            <td>
-                                <p-button
-                                    (click)="deleteCategory(category.id)"
+                                <!-- <p-button
+                                    (click)="deleteProduct(product.id)"
                                     styleClass="p-button-danger mr-2"
                                     icon="pi pi-trash"
                                 >
                                 </p-button>
                                 <p-button
-                                    (click)="updateCategory(category.id)"
+                                    (click)="updateProduct(product.id)"
                                     styleClass="p-button-success"
                                     icon="pi pi-pencil"
                                 >
-                                </p-button>
+                                </p-button> -->
                             </td>
                         </tr>
                     </ng-template>
