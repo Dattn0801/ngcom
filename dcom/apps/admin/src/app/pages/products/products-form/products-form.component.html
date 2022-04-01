@@ -78,13 +78,21 @@
                     <div class="p-fluid formgrid grid">
                         <div class="field col">
                             <label for="description">Mô tả</label>
-                            <textarea [rows]="5" pInputTextarea></textarea>
-
-                            <small *ngIf="productForm['description'].invalid && isSubmited" class="p-error">Nhập số lượng</small>
+                            <textarea [rows]="7" cols="30" formControlName="description" pInputTextarea></textarea>
+                            <small *ngIf="productForm['description'].invalid && isSubmited" class="p-error">Nhập mô tả</small>
                         </div>
                         <div class="field col col-12">
                             <label for="richDescription">Chi tiết mô tả </label>
                             <p-editor formControlName="richDescription" [style]="{ height: '320px' }"></p-editor>
+                            <small *ngIf="productForm['richDescription'].invalid && isSubmited" class="p-error">Nhập chi tiết mô tả</small>
+                        </div>
+                        <div class="field col col-12">
+                            <label for="image">Ảnh chính </label>
+                            <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+                            <small *ngIf="productForm['image'].invalid && isSubmited" class="p-error">Chưa có ảnh cho sản phẩm</small>
+                            <div class="col-2 mt-2">
+                                <img style="width: 100%; border-radius: 5px" [src]="imageDisplay" alt="" />
+                            </div>
                         </div>
                     </div>
                 </form>
