@@ -12,14 +12,14 @@
         </div>
         <div class="p-grid">
             <div class="p-col-12">
-                <p-table [value]="products" [paginator]="true" [rows]="10" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                <p-table [value]="products" [paginator]="true" [rows]="1" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
                     <ng-template pTemplate="header">
                         <tr>
                             <th pSortableColumn="name">Tên<p-sortIcon field="name"></p-sortIcon></th>
-                            <th pSortableColumn="image">Ảnh<p-sortIcon field="image"></p-sortIcon></th>
+                            <th>Ảnh</th>
                             <th pSortableColumn="price">Giá<p-sortIcon field="price"></p-sortIcon></th>
                             <th pSortableColumn="countInStock">Số lượng<p-sortIcon field="countInStock"></p-sortIcon></th>
-                            <th pSortableColumn="category">Danh mục<p-sortIcon field="category"></p-sortIcon></th>
+                            <th pSortableColumn="category.name">Danh mục<p-sortIcon field="category"></p-sortIcon></th>
                             <th pSortableColumn="dateCreated">Ngày tạo<p-sortIcon field="dateCreated"></p-sortIcon></th>
                             <th></th>
                         </tr>
