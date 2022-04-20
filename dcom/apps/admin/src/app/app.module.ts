@@ -11,7 +11,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
-
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 //Primeng Component
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -32,9 +33,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
-import { UserListComponent } from './pages/users/user-list/user-list.component';
+import UserListComponent from './pages/users/user-list/user-list.component';
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { TagModule } from 'primeng/tag';
+import { InputMaskModule } from 'primeng/inputmask';
+
+import { FieldsetModule } from 'primeng/fieldset';
 
 const UX_MODULE = [
     CardModule,
@@ -50,7 +54,9 @@ const UX_MODULE = [
     InputSwitchModule,
     DropdownModule,
     EditorModule,
-    TagModule
+    TagModule,
+    InputMaskModule,
+    FieldsetModule
 ];
 const routes: Routes = [
     {
@@ -66,7 +72,9 @@ const routes: Routes = [
             { path: 'products/form/:id', component: ProductsFormComponent },
             { path: 'users', component: UserListComponent },
             { path: 'users/form', component: UserFormComponent },
-            { path: 'users/form/:id', component: UserFormComponent }
+            { path: 'users/form/:id', component: UserFormComponent },
+            { path: 'orders', component: OrdersListComponent },
+            { path: 'orders/:id', component: OrdersDetailComponent }
         ]
     }
 ];
@@ -81,7 +89,9 @@ const routes: Routes = [
         ProductsListComponent,
         ProductsFormComponent,
         UserListComponent,
-        UserFormComponent
+        UserFormComponent,
+        OrdersListComponent,
+        OrdersDetailComponent
     ],
     imports: [
         BrowserModule,

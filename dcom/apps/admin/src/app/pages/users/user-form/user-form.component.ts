@@ -5,6 +5,7 @@ import { User, UsersService } from '@dcom/users';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { Location } from '@angular/common';
+import * as countriesLib from 'i18n-iso-countries';
 
 @Component({
     selector: 'admin-user-form',
@@ -14,7 +15,7 @@ import { Location } from '@angular/common';
 export class UserFormComponent implements OnInit {
     form: FormGroup;
     isSubmitted = false;
-    editmode = false;
+    editMode = false;
     currentUserId: string;
     countries = [];
     constructor(
@@ -47,6 +48,9 @@ export class UserFormComponent implements OnInit {
 
     private _getCountries() {
         this.countries = this.usersService.getCountries();
+        console.log(this.countries);
+        //countriesLib.registerLocale(require("i18n-iso-countries/langs/en.json"));
+        //console.log(countriesLib.getNames("en", {select: "official"}));
     }
 
     private _addUser(user: User) {
@@ -100,7 +104,7 @@ export class UserFormComponent implements OnInit {
     private _checkEditMode() {
         this.route.params.subscribe((params) => {
             if (params['id']) {
-                this.editmode = true;
+                this.editMode = true;
                 this.currentUserId = params['id'];
                 this.usersService.getUser(params['id']).subscribe((user) => {
                     this.userForm['name'].setValue(user.name);
@@ -137,14 +141,14 @@ export class UserFormComponent implements OnInit {
             city: this.userForm['city'].value,
             country: this.userForm['country'].value
         };
-        if (this.editmode) {
+        if (this.editMode) {
             this._updateUser(user);
         } else {
             this._addUser(user);
         }
     }
 
-    onCancle() {
+    onCancel() {
         this.location.back();
     }
 

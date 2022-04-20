@@ -1,1 +1,5 @@
 export * from './lib/orders.module';
+export * from './lib/models/order';
+export * from './lib/models/order-item';
+//export then constructer get
+export * from './lib/services/order.service';

@@ -8,7 +8,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     templateUrl: './user-list.component.html',
     styles: []
 })
-export class UserListComponent implements OnInit {
+export default class UserListComponent implements OnInit {
     users: User[] = [];
     constructor(
         private usersService: UsersService,
@@ -23,8 +23,8 @@ export class UserListComponent implements OnInit {
 
     _deleteUser(userId: string) {
         this.confirmationService.confirm({
-            message: 'Bạn có muốn xóa danh mục này không',
-            header: 'Xóa danh mục',
+            message: 'Bạn có muốn xóa khách hàng này không',
+            header: 'Xóa khách hàng',
             icon: 'pi pi-exclamation-triangle',
             acceptLabel: 'Có',
             rejectLabel: 'Không',
@@ -50,12 +50,15 @@ export class UserListComponent implements OnInit {
         });
     }
     _updateUser(userId: string) {
-        this.router.navigateByUrl(`products/form/${userId}`);
+        this.router.navigateByUrl(`users/form/${userId}`);
     }
-
     private _getUsers() {
         this.usersService.getUsers().subscribe((users) => {
             this.users = users;
         });
+    }
+    getCountryName(countryKey: string) {
+        if (countryKey) return this.usersService.getCountry(countryKey);
+        return true;
     }
 }
