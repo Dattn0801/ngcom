@@ -14,20 +14,20 @@
                                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                                 <input type="text" formControlName="email" pInputText placeholder="Tài khoản" />
                             </div>
-                            <!-- <small *ngIf="loginForm['email'].invalid && isSubmitted" class="p-error"
-                                ><span *ngIf="loginForm['email']; errors: ['required']">email is required</span>
-                                <span *ngIf="loginForm['email']; errors: ['email']">email is invalid</span></small
-                            > -->
+                            <small *ngIf="loginForm['email'].invalid && isSubmitted" class="p-error"
+                                ><span *ngIf="loginForm['email'].errors?.['required']">Cần điền email</span>
+                                <span *ngIf="loginForm['email'].errors?.['email']">email không hợp lệ</span></small
+                            >
                         </div>
                         <div class="col-12">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                                 <input type="password" formControlName="password" pInputText placeholder="Mật khẩu" />
                             </div>
-                            <small *ngIf="loginForm['password'].invalid && isSubmitted" class="p-error">Password is required </small>
+                            <small *ngIf="loginForm['password'].invalid && isSubmitted" class="p-error">Cần điền password</small>
                         </div>
                         <div class="col-12">
-                            <button pButton type="button" class="full-btn" (onClick)="onSubmit()" label="Đăng nhập"></button>
+                            <button pButton type="button" class="full-btn" (click)="onSubmit()" label="Đăng nhập"></button>
                         </div>
                     </div>
                 </form>
