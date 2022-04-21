@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+
 //App component
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
@@ -13,6 +13,9 @@ import { ProductsListComponent } from './pages/products/products-list/products-l
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+
+//Reuse Module
+import { UsersModule } from '@dcom/users';
 //Primeng Component
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -94,6 +97,7 @@ const routes: Routes = [
         OrdersDetailComponent
     ],
     imports: [
+        UsersModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
