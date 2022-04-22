@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'users-login',
@@ -11,8 +12,8 @@ export class LoginComponent implements OnInit {
     loginFormGroup!: FormGroup;
     isSubmitted = false;
     authError = false;
-    authMessage = 'Email or Password are wrong';
-    constructor(private formBuilder: FormBuilder) {}
+    authMessage = 'Email hoặc mật khẩu không hợp lệ';
+    constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
     ngOnInit(): void {
         this._initLoginForm();
@@ -25,6 +26,19 @@ export class LoginComponent implements OnInit {
     }
     onSubmit() {
         this.isSubmitted = true;
+        if (this.loginFormGroup.invalid) return;
+        this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe(
+            (user) => {
+                console.log(user);
+            },
+            (error: HttpErrorResponse) => {
+                console.log(error);
+                this.authError = true;
+                if (error.status !== 400) {
+                    this.authMessage = 'Lỗi server, hãy đăng nhập vào thời điểm khác nhé';
+                }
+            }
+        );
     }
     get loginForm() {
         return this.loginFormGroup.controls;
