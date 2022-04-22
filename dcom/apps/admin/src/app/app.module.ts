@@ -65,6 +65,7 @@ const routes: Routes = [
     {
         path: '',
         component: ShellComponent,
+        canActivate: [],
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'categories', component: CategoriesListComponent },

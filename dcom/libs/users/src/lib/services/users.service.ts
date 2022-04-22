@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { User } from '../models/user';
 import * as countriesLib from 'i18n-iso-countries';
-declare const require;
+declare const require: any;
 @Injectable({
     providedIn: 'root'
 })
