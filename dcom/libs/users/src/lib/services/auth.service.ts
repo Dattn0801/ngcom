@@ -21,8 +21,8 @@ export class AuthService {
         return this.http.post<User>(`${this.apiURLUsers}/login`, { email, password });
     }
 
-    // logout() {
-    //     this.token.removeToken();
-    //     this.router.navigate(['/login']);
-    // }
+    logout() {
+        this.token.removeToken();
+        this.router.navigate(['/login']);
+    }
 }

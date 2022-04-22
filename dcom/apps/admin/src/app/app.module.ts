@@ -15,7 +15,7 @@ import { OrdersListComponent } from './pages/orders/orders-list/orders-list.comp
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 
 //Reuse Module
-import { UsersModule } from '@dcom/users';
+import { AuthGuard, UsersModule } from '@dcom/users';
 //Primeng Component
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -65,7 +65,7 @@ const routes: Routes = [
     {
         path: '',
         component: ShellComponent,
-        canActivate: [],
+        canActivate: [AuthGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'categories', component: CategoriesListComponent },
