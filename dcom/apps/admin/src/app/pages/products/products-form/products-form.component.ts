@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Product, ProductsService } from '@dcom/products';
 import { MessageService } from 'primeng/api';
-import { timer } from 'rxjs';
+import { Subject, takeUntil, timer } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,13 +11,14 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './products-form.component.html',
     styles: []
 })
-export class ProductsFormComponent implements OnInit {
+export class ProductsFormComponent implements OnInit, OnDestroy {
     editMode = false;
     form: FormGroup;
     isSubmited = false;
     categories = [];
     imageDisplay: string | ArrayBuffer;
     currentProductId: string;
+    endsubs$: Subject<void> = new Subject();
     constructor(
         private formBuilder: FormBuilder,
         private messageService: MessageService,
@@ -31,6 +32,11 @@ export class ProductsFormComponent implements OnInit {
         this._initForm();
         this._getCategories();
         this._checkEditMode();
+    }
+    ngOnDestroy(): void {
+        this.endsubs$.next();
+        this.endsubs$.complete();
+        //console.log('destroy cate');
     }
     private _initForm() {
         this.form = this.formBuilder.group({
@@ -47,9 +53,12 @@ export class ProductsFormComponent implements OnInit {
     }
 
     _getCategories() {
-        this.categoriesService.getCategories().subscribe((cate) => {
-            this.categories = cate;
-        });
+        this.categoriesService
+            .getCategories()
+            .pipe(takeUntil(this.endsubs$))
+            .subscribe((cate) => {
+                this.categories = cate;
+            });
     }
 
     //Because this product has image, we need submit form data not json data
@@ -81,69 +90,78 @@ export class ProductsFormComponent implements OnInit {
     }
 
     private _addProduct(productData: FormData) {
-        this.productsService.createProduct(productData).subscribe(
-            (product: Product) => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Thành công',
-                    detail: `Sản phẩm ${product.name} đã được tạo`
-                });
-                timer(2000)
-                    .toPromise()
-                    .then(() => {
-                        this.location.back();
+        this.productsService
+            .createProduct(productData)
+            .pipe(takeUntil(this.endsubs$))
+            .subscribe(
+                (product: Product) => {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Thành công',
+                        detail: `Sản phẩm ${product.name} đã được tạo`
                     });
-            },
-            () => {
-                this.messageService.add({
-                    severity: 'error',
-                    summary: 'Lỗi',
-                    detail: 'Không thể tạo sản phẩm'
-                });
-            }
-        );
+                    timer(2000)
+                        .toPromise()
+                        .then(() => {
+                            this.location.back();
+                        });
+                },
+                () => {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Lỗi',
+                        detail: 'Không thể tạo sản phẩm'
+                    });
+                }
+            );
     }
     private _updateProduct(productData: FormData) {
-        this.productsService.updateProduct(productData, this.currentProductId).subscribe(
-            () => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Thành công',
-                    detail: `Sản phẩm đã được chỉnh sửa`
-                });
-                timer(2000)
-                    .toPromise()
-                    .then(() => {
-                        this.location.back();
+        this.productsService
+            .updateProduct(productData, this.currentProductId)
+            .pipe(takeUntil(this.endsubs$))
+            .subscribe(
+                () => {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Thành công',
+                        detail: `Sản phẩm đã được chỉnh sửa`
                     });
-            },
-            () => {
-                this.messageService.add({
-                    severity: 'error',
-                    summary: 'Lỗi',
-                    detail: 'Sản phẩm không thể chỉnh sửa'
-                });
-            }
-        );
+                    timer(2000)
+                        .toPromise()
+                        .then(() => {
+                            this.location.back();
+                        });
+                },
+                () => {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Lỗi',
+                        detail: 'Sản phẩm không thể chỉnh sửa'
+                    });
+                }
+            );
     }
     private _checkEditMode() {
         this.route.params.subscribe((params) => {
             if (params['id']) {
                 this.editMode = true;
                 this.currentProductId = params['id'];
-                this.productsService.getProduct(params['id']).subscribe((pro) => {
-                    this.productForm['name'].setValue(pro.name);
-                    this.productForm['category'].setValue(pro.category.id);
-                    this.productForm['brand'].setValue(pro.brand);
-                    this.productForm['price'].setValue(pro.price);
-                    this.productForm['countInStock'].setValue(pro.countInStock);
-                    this.productForm['isFeatured'].setValue(pro.isFeatured);
-                    this.productForm['description'].setValue(pro.description);
-                    this.productForm['richDescription'].setValue(pro.richDescription);
-                    this.imageDisplay = pro.image;
-                    this.productForm['image'].setValidators([]);
-                    this.productForm['image'].updateValueAndValidity();
-                });
+                this.productsService
+                    .getProduct(params['id'])
+                    .pipe(takeUntil(this.endsubs$))
+                    .subscribe((pro) => {
+                        this.productForm['name'].setValue(pro.name);
+                        this.productForm['category'].setValue(pro.category.id);
+                        this.productForm['brand'].setValue(pro.brand);
+                        this.productForm['price'].setValue(pro.price);
+                        this.productForm['countInStock'].setValue(pro.countInStock);
+                        this.productForm['isFeatured'].setValue(pro.isFeatured);
+                        this.productForm['description'].setValue(pro.description);
+                        this.productForm['richDescription'].setValue(pro.richDescription);
+                        this.imageDisplay = pro.image;
+                        this.productForm['image'].setValidators([]);
+                        this.productForm['image'].updateValueAndValidity();
+                    });
             }
         });
     }

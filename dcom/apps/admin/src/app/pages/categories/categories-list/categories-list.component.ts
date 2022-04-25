@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@dcom/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 @Component({
     selector: 'admin-categories-list',
     templateUrl: './categories-list.component.html',
     styles: []
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
     categories: Category[] = [];
+    // synstax $ Subject of observable
+    endsubs$: Subject<void> = new Subject();
+
     constructor(
         private categoriesService: CategoriesService,
         private messageService: MessageService,
@@ -18,6 +22,11 @@ export class CategoriesListComponent implements OnInit {
 
     ngOnInit(): void {
         this._getCategories();
+    }
+    ngOnDestroy(): void {
+        this.endsubs$.next();
+        this.endsubs$.complete();
+        //console.log('destroy cate');
     }
     deleteCategory(categoryId: string) {
         this.confirmationService.confirm({
@@ -51,8 +60,11 @@ export class CategoriesListComponent implements OnInit {
         this.router.navigateByUrl(`categories/form/${categoryId}`);
     }
     private _getCategories() {
-        this.categoriesService.getCategories().subscribe((cats) => {
-            this.categories = cats;
-        });
+        this.categoriesService
+            .getCategories()
+            .pipe(takeUntil(this.endsubs$))
+            .subscribe((cats) => {
+                this.categories = cats;
+            });
     }
 }
