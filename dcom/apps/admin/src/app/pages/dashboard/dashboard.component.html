@@ -1,1 +1,55 @@
-<p>dashboard works!</p>
+<div class="admin-page" *ngIf="statistics.length">
+    <p-card
+        header="Dashboard"
+        subheader="Lasted Updates"
+        [style]="{ width: 'width' }"
+        styleClass="styleClass"
+    >
+        <div class="grid">
+            <div class="col-3">
+                <p-card styleClass="d-orders">
+                    <div class="d-item">
+                        <div>
+                            <i class="pi pi-shopping-cart"></i><br />
+                            <span class="name">Đơn hàng</span>
+                        </div>
+                        <span class="number">{{ statistics[0] }}</span>
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-3">
+                <p-card styleClass="d-users">
+                    <div class="d-item">
+                        <div>
+                            <i class="pi pi-user"></i><br />
+                            <span class="name">Khách hàng</span>
+                        </div>
+                        <span class="number">{{ statistics[1] }}</span>
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-3">
+                <p-card styleClass="d-products">
+                    <div class="d-item">
+                        <div>
+                            <i class="pi pi-briefcase"></i><br />
+                            <span class="name">Sản phẩm</span>
+                        </div>
+                        <span class="number">{{ statistics[2] }}</span>
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-3">
+                <p-card styleClass="d-totalsales">
+                    <div class="d-item">
+                        <div>
+                            <i class="pi pi-wallet"></i><br />
+                            <span class="name">Doanh thu</span>
+                        </div>
+                        <span class="number">{{ statistics[2] }}vnd</span>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </p-card>
+</div>

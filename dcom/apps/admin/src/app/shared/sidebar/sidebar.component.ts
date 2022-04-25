@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@dcom/users';
 
 @Component({
     selector: 'admin-sidebar',
     templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
-    constructor() {}
+    constructor(private authService: AuthService) {}
 
     ngOnInit(): void {}
+
+    logoutUser() {
+        //console.log('hello world');
+        this.authService.logout();
+    }
 }
