@@ -1,4 +1,5 @@
-//Base config
+//Base
+@import '~normalize.css/normalize.css';
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
@@ -9,6 +10,7 @@
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
 
+
 //Update primeng => upadte configuration
 @import './base/configuration.scss';
 
@@ -16,10 +18,20 @@
 @import './apps/shop/pages/home-page.scss';
 @import './apps/shop/pages/product-list-page.scss';
 
+
 //Shared
 @import './apps/shop/shared/header.scss';
 @import './apps/shop/shared/footer.scss';
+@import './apps/shop/shared/nav.scss';
 
 //Libs
-
 @import './libs/ui/ui.scss';
+@import './libs/products/products-search.scss';
+@import './libs/ui/banner.scss';
+
+.container{
+  width:1200px;
+  padding:15px;
+  margin: 0  auto;
+  background-color: var(--surface-100);
+}

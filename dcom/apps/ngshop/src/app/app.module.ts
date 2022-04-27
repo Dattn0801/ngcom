@@ -11,6 +11,8 @@ import { UiModule } from '@dcom/ui';
 
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
+import { NavComponent } from './shared/nav/nav.component';
+import { ProductsModule } from '@dcom/products';
 const routes: Routes = [
     { path: '', component: HomePageComponent },
     { path: 'products', component: ProductListComponent }
@@ -21,9 +23,17 @@ const routes: Routes = [
         HomePageComponent,
         ProductListComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        NavComponent
     ],
-    imports: [BrowserModule, RouterModule.forRoot(routes), UiModule, AccordionModule, ButtonModule],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        UiModule,
+        AccordionModule,
+        ButtonModule,
+        ProductsModule
+    ],
     providers: [],
     bootstrap: [AppComponent]
 })
