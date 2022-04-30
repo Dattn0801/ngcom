@@ -10,18 +10,22 @@
             "path": "./tsconfig.spec.json"
         }
     ],
+
     "compilerOptions": {
         "forceConsistentCasingInFileNames": true,
         "strict": false,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+
     },
     "angularCompilerOptions": {
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
         "strictTemplates": true,
+        "strictPropertyInitialization": false,
+
 
     }
 }
