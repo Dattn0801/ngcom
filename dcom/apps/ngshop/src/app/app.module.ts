@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@dcom/products';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@dcom/orders';
 
 //font awesome
 
@@ -26,7 +27,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         UiModule,
         AccordionModule,
         ButtonModule,
-        ProductsModule
+        ProductsModule,
+        OrdersModule
     ],
     providers: [],
     bootstrap: [AppComponent]
