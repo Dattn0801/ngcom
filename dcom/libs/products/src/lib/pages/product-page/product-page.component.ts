@@ -4,6 +4,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
 import { PrimeNGConfig } from 'primeng/api';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { CartItem, CartService } from '@dcom/orders';
 
 @Component({
     selector: 'product-page',
@@ -13,11 +15,12 @@ import { PrimeNGConfig } from 'primeng/api';
 export class ProductPageComponent implements OnInit, OnDestroy {
     product!: Product;
     endSubs$: Subject<void> = new Subject();
-    quantity!: number;
+    quantity = 1;
     constructor(
         private proService: ProductsService,
         private route: ActivatedRoute,
-        private primengConfig: PrimeNGConfig
+        private primengConfig: PrimeNGConfig,
+        private cartService: CartService
     ) {}
 
     ngOnInit(): void {
@@ -40,5 +43,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                 this.product = resPrO;
             });
     }
-    addProductToCart() {}
+    addProductToCart() {
+        const cartItem: CartItem = {
+            productId: this.product.id,
+            quantity: this.quantity
+        };
+        this.cartService.setCartItem(cartItem);
+    }
 }

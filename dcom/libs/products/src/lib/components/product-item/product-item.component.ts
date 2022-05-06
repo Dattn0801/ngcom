@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CartService, CartItem } from '@dcom/orders';
 import { Product } from '../../models/product';
 

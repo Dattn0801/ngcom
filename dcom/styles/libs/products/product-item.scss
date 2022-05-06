@@ -1,7 +1,10 @@
 .product-item {
+  &:hover{
+    border-radius: 7px;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+  }
   &-wrapper {
-    background-color: var(--surface-200);
-    border: 1px solid var(--surface-300);
+    background-color: var(--surface-0);
     border-radius: 7px;
     display: flex;
     align-items: center;
@@ -34,3 +37,4 @@
 
   }
 }
+
