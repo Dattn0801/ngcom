@@ -1,0 +1,47 @@
+<div class="cart-page">
+    <div class="grid">
+        <div class="col-8">
+            <div>
+                <p-button label="Tiếp tục mua sắm" icon="pi pi-arrow-left" (onClick)="backToShop()">
+                </p-button>
+            </div>
+            <div>
+                <h4>Giỏ hàng: {{ 2 }} Sản phẩm</h4>
+            </div>
+            <div class="cart-shipping mb-5">Giao hàng sau khi thanh toán</div>
+            <div class="cart-item">
+                <div class="grid p-fluid">
+                    <div class="col-2 cart-item-image">img</div>
+                    <div class="col-7">
+                        <div class="cart-item-name">Product name</div>
+                        <div class="cart-item-price">{{ 22222 }}</div>
+                        <div class="cart-item-remove">
+                            <p-button icon="pi pi-trash"></p-button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="field cart-item-quantity">
+                            <p-inputNumber
+                                pRipple
+                                mode="decimal"
+                                [showButtons]="true"
+                                inputId="minmax-buttons"
+                                [min]="0"
+                                [max]="100"
+                            >
+                            </p-inputNumber>
+                        </div>
+                        <div class="cart-item-subtotal">
+                            Tổng tiền
+                            <span class="cart-item-subtotal-value"> {{ 12321 }} vnđ </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-4">
+            <!-- <orders-order-summary></orders-order-summary> -->
+        </div>
+    </div>
+</div>

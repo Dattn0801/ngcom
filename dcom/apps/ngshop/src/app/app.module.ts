@@ -20,6 +20,7 @@ import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //font awesome
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 @NgModule({
@@ -41,7 +42,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         ProductsModule,
         OrdersModule,
         ToastModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FontAwesomeModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent]
