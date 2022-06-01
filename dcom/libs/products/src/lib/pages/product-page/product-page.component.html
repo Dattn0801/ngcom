@@ -16,7 +16,7 @@
                 ></p-rating>
             </div>
             <div class="product-price">
-                {{ product.price }}
+                {{ product.price | currency: 'VND' }}
                 <span class="price-before">
                     <!-- {{ product.price + 18 }} -->
                 </span>

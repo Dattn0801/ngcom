@@ -15,8 +15,11 @@
       border-radius: 7px;
 
       &-image{
-        height: 120px;
+        img{
+          height: 120px;
         max-width: 100%;
+        }
+
       }
 
       &-name{

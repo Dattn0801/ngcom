@@ -131,7 +131,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
                         this.userForm['zip'].setValue(user.zip);
                         this.userForm['city'].setValue(user.city);
                         this.userForm['country'].setValue(user.country);
-
                         this.userForm['password'].setValidators([]);
                         this.userForm['password'].updateValueAndValidity();
                     });

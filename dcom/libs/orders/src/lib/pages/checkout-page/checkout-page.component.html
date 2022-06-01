@@ -1,0 +1,113 @@
+<div class="checkout-page">
+    <p-button label="Back to cart" icon="pi pi-arrow-left" (onClick)="backToCart()"></p-button>
+    <div class="grid checkout-form">
+        <div class="col-8">
+            <form [formGroup]="checkoutFormGroup">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="name">Tên</label>
+                        </div>
+                        <input formControlName="name" id="name" type="text" pInputText />
+                        <small *ngIf="checkoutForm['name'].invalid && isSubmitted" class="p-error"
+                            >Cần nhập tên</small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="email">Email</label>
+                        </div>
+                        <input formControlName="email" id="email" type="text" pInputText />
+                        <small *ngIf="checkoutForm['email'].invalid && isSubmitted" class="p-error"
+                            ><span *ngIf="checkoutForm['email'].errors['required']"
+                                >Cần nhập email</span
+                            >
+                            <span *ngIf="checkoutForm['email'].errors['email']"
+                                >Email không hợp lệ</span
+                            ></small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="color">Số điện thoại</label>
+                        </div>
+                        <p-inputMask
+                            mask="(999) 999-9999"
+                            formControlName="phone"
+                            placeholder="(999) 999-9999"
+                        ></p-inputMask>
+                        <small *ngIf="checkoutForm['phone'].invalid && isSubmitted" class="p-error"
+                            >Cần nhập số điện thoại</small
+                        >
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="street">Street</label>
+                        </div>
+                        <input formControlName="street" id="street" type="text" pInputText />
+                        <small *ngIf="checkoutForm['street'].invalid && isSubmitted" class="p-error"
+                            >Cần tên đường</small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="street">Chung cư</label>
+                        </div>
+                        <input formControlName="apartment" id="apartment" type="text" pInputText />
+                        <small
+                            *ngIf="checkoutForm['apartment'].invalid && isSubmitted"
+                            class="p-error"
+                            >cần nhập số nhà</small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="street">Mã zip</label>
+                        </div>
+                        <input formControlName="zip" id="zip" type="text" pInputText />
+                        <small *ngIf="checkoutForm['zip'].invalid && isSubmitted" class="p-error"
+                            >Cần nhập mã zip</small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="city">Thành phố</label>
+                        </div>
+                        <input formControlName="city" id="city" type="text" pInputText />
+                        <small *ngIf="checkoutForm['city'].invalid && isSubmitted" class="p-error"
+                            >Cần nhập thành phố</small
+                        >
+                    </div>
+                    <div class="p-field col-4">
+                        <div class="mb-2">
+                            <label for="country">Quốc gia</label>
+                        </div>
+                        <p-dropdown
+                            [options]="countries"
+                            formControlName="country"
+                            optionLabel="name"
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="name"
+                            [showClear]="true"
+                            placeholder="Select a Country"
+                        ></p-dropdown>
+                        <small
+                            *ngIf="checkoutForm['country'].invalid && isSubmitted"
+                            class="p-error"
+                            >Cần nhập quốc gia</small
+                        >
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-4">
+            <orders-order-summary></orders-order-summary>
+            <div class="checkout-button">
+                <p-button label="Đặt hàng" (onClick)="placeOrder()"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

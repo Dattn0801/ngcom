@@ -2,7 +2,11 @@
 <div class="admin-page">
     <p-card
         [header]="editMode ? 'Chỉnh sửa thông tin khách hàng' : 'Thêm khách hàng'"
-        [subheader]="editMode ? 'Bạn có thể chỉnh sửa thông tin khách hàng ở đây' : 'Bạn có thể thêm khách hàng ở đây'"
+        [subheader]="
+            editMode
+                ? 'Bạn có thể chỉnh sửa thông tin khách hàng ở đây'
+                : 'Bạn có thể thêm khách hàng ở đây'
+        "
     >
         <div class="grid mb-5">
             <div class="col-12">
@@ -34,25 +38,44 @@
                         <div class="field col col-4">
                             <label for="name">Tên</label>
                             <input formControlName="name" id="name" type="text" pInputText />
-                            <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error">Name is required</small>
+                            <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error"
+                                >Name is required</small
+                            >
                         </div>
                         <div class="field col col-4">
                             <label for="email">Email</label>
                             <input formControlName="email" id="email" type="text" pInputText />
                             <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error">
-                                <span *ngIf="userForm['email'].errors['required']">email is required</span>
-                                <span *ngIf="userForm['email'].errors['email']">email is invalid</span>
+                                <span *ngIf="userForm['email'].errors['required']"
+                                    >email is required</span
+                                >
+                                <span *ngIf="userForm['email'].errors['email']"
+                                    >email is invalid</span
+                                >
                             </small>
                         </div>
                         <div class="field col col-4">
                             <label for="password">Mật khẩu</label>
-                            <input formControlName="password" id="password" type="password" pInputText />
-                            <small *ngIf="userForm['password'].invalid && isSubmitted" class="p-error">Password is required</small>
+                            <input
+                                formControlName="password"
+                                id="password"
+                                type="password"
+                                pInputText
+                            />
+                            <small
+                                *ngIf="userForm['password'].invalid && isSubmitted"
+                                class="p-error"
+                                >Password is required</small
+                            >
                         </div>
                         <div class="field col col-4">
                             <label for="color">Điện thoại</label><br />
-                            <p-inputMask mask="(+99) 999-9999999" formControlName="phone" placeholder="(0xx) 000_0000000"></p-inputMask>
-                            <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error">phone is required</small>
+                            <p-inputMask
+                                mask="(+99) 999-9999999"
+                                formControlName="phone"
+                                placeholder="(0xx) 000_0000000"
+                            ></p-inputMask>
+                            <!-- <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error">phone is required</small> -->
                         </div>
                         <div class="field col col-4">
                             <label for="isAdmin">Admin</label><br />
@@ -66,7 +89,12 @@
                         </div>
                         <div class="field col col-4">
                             <label for="street">Căn hộ</label>
-                            <input formControlName="apartment" id="apartment" type="text" pInputText />
+                            <input
+                                formControlName="apartment"
+                                id="apartment"
+                                type="text"
+                                pInputText
+                            />
                         </div>
                         <div class="field col col-4">
                             <label for="street">Mã zip</label>
