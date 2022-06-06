@@ -5,6 +5,7 @@ import { Cart, CartService, Order, OrderItem, OrdersService } from '@dcom/orders
 import { UsersService } from '@dcom/users';
 import { Subject, takeUntil } from 'rxjs';
 import { ORDER_STATUS } from '../../order.constants';
+import { StripeService } from 'ngx-stripe';
 
 @Component({
     selector: 'orders-checkout-page',
@@ -23,7 +24,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         private usersService: UsersService,
         private formBuilder: FormBuilder,
         private cartService: CartService,
-        private ordersService: OrdersService
+        private ordersService: OrdersService,
+        private stripeService: StripeService
     ) {}
 
     ngOnInit(): void {
@@ -71,6 +73,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         if (this.checkoutFormGroup.invalid) {
             return;
         }
+
         const order: Order = {
             orderItems: this.orderItems,
             shippingAddress1: this.checkoutForm['street'].value,
@@ -83,17 +86,23 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
             user: this.userId,
             dateOrdered: `${Date.now()}`
         };
-        this.ordersService.createOrder(order).subscribe(
-            () => {
-                console.log('orderok');
-                //redirect to thank you page // payment
-                this.cartService.emptyCart();
-                this.router.navigate(['/success']);
-            },
-            () => {
-                //display some message to user
+        this.ordersService.cacheOrderData(order);
+        this.ordersService.createCheckoutSession(this.orderItems).subscribe((error) => {
+            if (error) {
+                console.log('error payment');
             }
-        );
+        });
+        // this.ordersService.createOrder(order).subscribe(
+        //     () => {
+        //         console.log('orderok');
+        //         //redirect to thank you page // payment
+        //         this.cartService.emptyCart();
+        //         this.router.navigate(['/success']);
+        //     },
+        //     () => {
+        //         //display some message to user
+        //     }
+        // );
     }
     private _getCartItems() {
         const cart: Cart = this.cartService.getCart();

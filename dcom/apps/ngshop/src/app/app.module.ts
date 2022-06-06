@@ -27,6 +27,9 @@ import { JwtInterceptor, UsersModule } from '@dcom/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+//stripe
+import { NgxStripeModule } from 'ngx-stripe';
+
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 @NgModule({
     declarations: [
@@ -51,7 +54,10 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         ToastModule,
         BrowserAnimationsModule,
         FontAwesomeModule,
-        UsersModule
+        UsersModule,
+        NgxStripeModule.forRoot(
+            'pk_test_51KFJTqARFKwupOUBst6uaDnx8sx10fgEVLiD633yIF5aV2fMsB3re3UkqDL42Zr5SLGzPW7Mmo9zBil6habVgVcS00HhMKz3uM'
+        )
     ],
     providers: [
         MessageService,
