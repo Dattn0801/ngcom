@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart, CartService, Order, OrderItem, OrdersService } from '@dcom/orders';
 import { UsersService } from '@dcom/users';
+import { Subject, takeUntil } from 'rxjs';
 import { ORDER_STATUS } from '../../order.constants';
 
 @Component({
@@ -10,12 +11,13 @@ import { ORDER_STATUS } from '../../order.constants';
     templateUrl: './checkout-page.component.html',
     styles: []
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
     checkoutFormGroup: FormGroup;
     isSubmitted = false;
     orderItems: OrderItem[] = [];
-    userId = '622eee7a2ded4891b40092cd';
+    userId: string;
     countries = [];
+    unsubscribe$: Subject<void> = new Subject();
     constructor(
         private router: Router,
         private usersService: UsersService,
@@ -25,9 +27,14 @@ export class CheckoutPageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this._autoFillUserData();
         this._initCheckoutForm();
         this._getCartItems();
         this._getCountries();
+    }
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
     private _initCheckoutForm() {
         this.checkoutFormGroup = this.formBuilder.group({
@@ -40,6 +47,24 @@ export class CheckoutPageComponent implements OnInit {
             apartment: ['', Validators.required],
             street: ['', Validators.required]
         });
+    }
+    private _autoFillUserData() {
+        this.usersService
+            .observeCurrentUser()
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe((user) => {
+                if (user) {
+                    this.userId = user.id;
+                    this.checkoutForm['name'].setValue(user.name);
+                    this.checkoutForm['email'].setValue(user.email);
+                    this.checkoutForm['phone'].setValue(user.phone);
+                    this.checkoutForm['city'].setValue(user.city);
+                    this.checkoutForm['street'].setValue(user.street);
+                    this.checkoutForm['country'].setValue(user.country);
+                    this.checkoutForm['zip'].setValue(user.zip);
+                    this.checkoutForm['apartment'].setValue(user.apartment);
+                }
+            });
     }
     placeOrder() {
         this.isSubmitted = true;

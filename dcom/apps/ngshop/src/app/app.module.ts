@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //font awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UsersModule } from '@dcom/users';
+import { JwtInterceptor, UsersModule } from '@dcom/users';
 
 //NGRX
 import { StoreModule } from '@ngrx/store';
@@ -53,7 +53,10 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         FontAwesomeModule,
         UsersModule
     ],
-    providers: [MessageService],
+    providers: [
+        MessageService,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
