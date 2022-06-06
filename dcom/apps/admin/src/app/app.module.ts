@@ -43,6 +43,10 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AppRoutingModule } from './app-routing.module';
 
+//ngrx
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 const UX_MODULE = [
     CardModule,
     ToolbarModule,
@@ -86,6 +90,8 @@ const UX_MODULE = [
         ReactiveFormsModule,
         AppRoutingModule,
         UsersModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
         ...UX_MODULE
     ],
     providers: [

@@ -23,6 +23,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UsersModule } from '@dcom/users';
 
+//NGRX
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 @NgModule({
     declarations: [
@@ -37,6 +41,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         BrowserModule,
         RouterModule.forRoot(routes),
         HttpClientModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
         UiModule,
         AccordionModule,
         ButtonModule,

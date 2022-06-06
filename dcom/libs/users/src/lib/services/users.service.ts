@@ -53,4 +53,5 @@ export class UsersService {
     getCountry(countryKey: string): string {
         return countriesLib.getName(countryKey, 'en');
     }
+    initAppSession() {}
 }
