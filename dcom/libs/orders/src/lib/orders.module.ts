@@ -15,11 +15,12 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { AuthGuard } from '@dcom/users';
 
 export const ordersRoutes: Route[] = [];
 const routes: Routes = [
     { path: 'cart', component: CartPageComponent },
-    { path: 'checkout', component: CheckoutPageComponent },
+    { path: 'checkout', canActivate: [AuthGuard], component: CheckoutPageComponent },
     { path: 'success', component: ThankYouComponent }
 ];
 @NgModule({

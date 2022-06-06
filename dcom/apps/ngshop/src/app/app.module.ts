@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //font awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UsersModule } from '@dcom/users';
 
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 @NgModule({
@@ -43,7 +44,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         OrdersModule,
         ToastModule,
         BrowserAnimationsModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        UsersModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent]
