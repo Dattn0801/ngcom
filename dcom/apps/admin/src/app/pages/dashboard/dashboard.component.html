@@ -21,7 +21,7 @@
                 <p-card styleClass="d-users">
                     <div class="d-item">
                         <div>
-                            <i class="pi pi-user"></i><br />
+                            <i class="pi pi-briefcase"></i><br />
                             <span class="name">Sản phẩm</span>
                         </div>
                         <span class="number">{{ statistics[1] }}</span>
@@ -32,7 +32,7 @@
                 <p-card styleClass="d-products">
                     <div class="d-item">
                         <div>
-                            <i class="pi pi-briefcase"></i><br />
+                            <i class="pi pi-user"></i><br />
                             <span class="name">Khách hàng</span>
                         </div>
                         <span class="number">{{ statistics[2] }}</span>
@@ -46,7 +46,7 @@
                             <i class="pi pi-wallet"></i><br />
                             <span class="name">Doanh thu</span>
                         </div>
-                        <span class="number">{{ statistics[3] }}vnd</span>
+                        <span class="number">{{ statistics[3] | currency: 'VND' }}</span>
                     </div>
                 </p-card>
             </div>

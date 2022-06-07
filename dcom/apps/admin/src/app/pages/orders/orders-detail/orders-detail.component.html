@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-4">
                     <h4>Tổng tiền</h4>
-                    <p>{{ order.totalPrice }} vnđ</p>
+                    <p>{{ order.totalPrice | currency: 'VND' }}</p>
                 </div>
             </div>
         </p-fieldset>
@@ -45,14 +45,14 @@
                 <div class="col-2">{{ orderItem.product['name'] }}</div>
                 <div class="col-2">{{ orderItem.product['brand'] }}</div>
                 <div class="col-2">{{ orderItem.product['category'].name }}</div>
-                <div class="col-2">{{ orderItem.product['price'] }}</div>
+                <div class="col-2">{{ orderItem.product['price'] | currency: 'VND' }}</div>
                 <div class="col-2">{{ orderItem.quantity }}</div>
             </div>
             <hr />
             <div class="grid" style="color: red">
                 <div class="col-2 col-offset-8 font-bold">Tổng tiền</div>
 
-                <div class="col-2 font-bold">{{ order.totalPrice }}</div>
+                <div class="col-2 font-bold">{{ order.totalPrice | currency: 'VND' }}</div>
             </div>
         </p-fieldset>
         <p-fieldset legend="Địa chỉ đơn hàng" [toggleable]="true" styleClass="mb-4 text-sm">
