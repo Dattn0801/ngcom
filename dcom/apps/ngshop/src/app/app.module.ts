@@ -29,8 +29,12 @@ import { EffectsModule } from '@ngrx/effects';
 
 //stripe
 import { NgxStripeModule } from 'ngx-stripe';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
-const routes: Routes = [{ path: '', component: HomePageComponent }];
+const routes: Routes = [
+    { path: '', component: HomePageComponent },
+    { path: '**', pathMatch: 'full', component: PagenotfoundComponent }
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,7 +42,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
         HeaderComponent,
         FooterComponent,
         NavComponent,
-        MessagesComponent
+        MessagesComponent,
+        PagenotfoundComponent
     ],
     imports: [
         BrowserModule,
