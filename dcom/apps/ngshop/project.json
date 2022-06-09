@@ -16,7 +16,9 @@
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/ngshop/src/favicon.ico", "apps/ngshop/src/assets"],
                 "styles": [
-                  "apps/ngshop/src/styles.scss"
+                  "apps/ngshop/src/styles.scss",
+                  "node_modules/quill/dist/quill.core.css",
+                  "node_modules/quill/dist/quill.snow.css"
                 ],
                 "scripts": []
             },
