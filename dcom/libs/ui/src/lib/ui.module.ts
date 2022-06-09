@@ -6,6 +6,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { IncentiveComponent } from './components/incentive/incentive.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BannerHotComponent } from './components/banner-hot/banner-hot.component';
 const routes: Routes = [
     {
         path: 'contact',
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [CommonModule, ButtonModule, RouterModule.forChild(routes)],
-    declarations: [BannerComponent, GalleryComponent, IncentiveComponent, ContactusComponent],
-    exports: [BannerComponent, GalleryComponent, IncentiveComponent, ContactusComponent]
+    declarations: [BannerComponent, GalleryComponent, IncentiveComponent, ContactusComponent, BannerHotComponent],
+    exports: [BannerComponent, GalleryComponent, IncentiveComponent, ContactusComponent, BannerHotComponent]
 })
 export class UiModule {}
