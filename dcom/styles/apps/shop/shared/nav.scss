@@ -5,7 +5,9 @@
     margin-right: 15px;
 
     a {
-      color: var(--surface-500);
+      color: var(--surface-800);
+      font-size:medium;
+      font-weight: 800;
       cursor: pointer;
       &:hover {
         color: $primary-color;

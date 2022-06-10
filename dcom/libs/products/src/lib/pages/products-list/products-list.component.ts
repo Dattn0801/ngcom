@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 import { Category } from '../../models/category';
 import { Product } from '../../models/product';
 import { CategoriesService } from '../../services/categories.service';
@@ -15,6 +16,12 @@ export class ProductsListComponent implements OnInit {
     categories: Category[] = [];
     isCategoryPage!: boolean;
 
+    //sort
+    sortOptions: SelectItem[];
+    sortOrder: number;
+    sortField: string;
+    sortKey: string;
+
     constructor(
         private proService: ProductsService,
         private catService: CategoriesService,
@@ -27,6 +34,11 @@ export class ProductsListComponent implements OnInit {
             params['categoryid'] ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
         });
         this._getCate();
+
+        this.sortOptions = [
+            { label: 'Từ thấp đến cao', value: '!price' },
+            { label: 'Từ cao đến thấp', value: 'price' }
+        ];
     }
     private _getPro(categoriesFilter?: string[]) {
         this.proService.getProducts(categoriesFilter).subscribe((pros) => {
@@ -56,5 +68,17 @@ export class ProductsListComponent implements OnInit {
             )
             .map(({ id }) => id);
         this._getPro(selectedCategories);
+    }
+
+    onSortChange(event) {
+        const value = event.value;
+
+        if (value.indexOf('!') === 0) {
+            this.sortOrder = -1;
+            this.sortField = value.substring(1, value.length);
+        } else {
+            this.sortOrder = 1;
+            this.sortField = value;
+        }
     }
 }

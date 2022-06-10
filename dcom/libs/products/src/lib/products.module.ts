@@ -16,6 +16,13 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { RippleModule } from 'primeng/ripple';
 import { UiModule } from '@dcom/ui';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+
 const routes: Routes = [
     {
         path: 'products',
@@ -41,7 +48,15 @@ const routes: Routes = [
         RatingModule,
         InputNumberModule,
         RippleModule,
-        UiModule
+        UiModule,
+
+        BrowserModule,
+        BrowserAnimationsModule,
+        DataViewModule,
+        HttpClientModule,
+        FormsModule,
+        DropdownModule,
+        InputTextModule
     ],
     declarations: [
         ProductsSearchComponent,
