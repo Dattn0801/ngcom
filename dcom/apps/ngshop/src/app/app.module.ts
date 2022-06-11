@@ -18,6 +18,7 @@ import { OrdersModule } from '@dcom/orders';
 import { MessagesComponent } from './shared/messages/messages.component';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StyleClassModule } from 'primeng/styleclass';
 
 //font awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -57,6 +58,8 @@ const routes: Routes = [
         ProductsModule,
         OrdersModule,
         ToastModule,
+        StyleClassModule,
+
         BrowserAnimationsModule,
         FontAwesomeModule,
         UsersModule,
