@@ -1,8 +1,8 @@
 <div class="product-page">
     <div class="grid">
         <div class="col-3" *ngIf="!isCategoryPage">
-            <h4>Danh mục</h4>
-            <div class="field-checkbox" *ngFor="let category of categories">
+            <h3 class="mt-8 ml-5">Danh mục</h3>
+            <div class="field-checkbox ml-2" *ngFor="let category of categories">
                 <p-checkbox
                     [(ngModel)]="category.checked"
                     [binary]="true"

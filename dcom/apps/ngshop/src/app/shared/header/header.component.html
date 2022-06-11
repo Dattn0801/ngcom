@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="grid">
         <div class="col-3">
             <div class="logo">
@@ -21,7 +21,10 @@
             <orders-cart-icon></orders-cart-icon>
         </div>
     </div>
-</header>
+</header> -->
+<section class="bg-bluegray-900 text-gray-100 font-medium py-2 text-center text-xs sm:text-base">
+    <strong>15%</strong> off on your first order.
+</section>
 <div
     class="surface-overlay px-3 sm:px-7 flex flex-wrap align-items-stretch justify-content-between relative lg:border-bottom-1 surface-border"
 >
@@ -140,7 +143,7 @@
         </ul>
     </div>
     <div class="flex align-items-center justify-content-center py-3 mr-8">
-        <img routerLink="/" src="assets/images/logo.png" alt="Image" height="40" />
+        <img routerLink="/" src="assets/images/logo_hyper.svg" alt="Image" height="50" />
     </div>
     <div class="lg:flex w-full lg:w-auto hidden py-3 lg:py-0">
         <ul class="list-none p-0 m-0 flex w-full" style="min-height: 30px">
@@ -175,8 +178,8 @@
                 <a
                     pripple=""
                     class="p-ripple p-element text-900 font-medium inline-flex align-items-center cursor-pointer lg:pl-3 pr-3 text-700 hover:text-primary"
-                    ><i pbadge="" class="pi pi-shopping-cart text-xl"></i
-                    ><span class="hidden">Cart</span><span class="p-ink"></span
+                    ><orders-cart-icon></orders-cart-icon><span class="hidden">Cart</span
+                    ><span class="p-ink"></span
                 ></a>
             </li>
         </ul>
