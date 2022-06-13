@@ -15,4 +15,12 @@
       margin-left: 20%;
     }
   }
+  button{
+    background-color: $primary-color;
+    border: 0;
+    border-radius: 7px;
+  }
+  .p-button:hover{
+    background-color: $primary-color-dark;
+  }
 }

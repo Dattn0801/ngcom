@@ -11,13 +11,19 @@
                     <div class="grid mt-4">
                         <div class="col-12">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                                <input
-                                    type="text"
-                                    formControlName="email"
-                                    pInputText
-                                    placeholder="Tài khoản"
-                                />
+                                <span class="p-float-label">
+                                    <span class="p-inputgroup-addon"
+                                        ><i class="pi pi-user"></i
+                                    ></span>
+
+                                    <input
+                                        id="float-input"
+                                        type="text"
+                                        formControlName="email"
+                                        pInputText
+                                    />
+                                    <label class="ml-6" for="float-input">Tài Khoản</label>
+                                </span>
                             </div>
                             <small *ngIf="loginForm['email'].invalid && isSubmitted" class="p-error"
                                 ><span *ngIf="loginForm['email'].errors?.['required']"
@@ -28,15 +34,20 @@
                                 ></small
                             >
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mt-3">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                                <input
-                                    type="password"
-                                    formControlName="password"
-                                    pInputText
-                                    placeholder="Mật khẩu"
-                                />
+                                <span class="p-float-label">
+                                    <span class="p-inputgroup-addon"
+                                        ><i class="pi pi-lock"></i
+                                    ></span>
+                                    <input
+                                        class="border-radius-0"
+                                        type="password"
+                                        formControlName="password"
+                                        pInputText
+                                    />
+                                    <label class="ml-6" for="float-input">Mật khẩu</label>
+                                </span>
                             </div>
                             <small
                                 *ngIf="loginForm['password'].invalid && isSubmitted"
