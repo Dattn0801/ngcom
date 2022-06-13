@@ -8,6 +8,7 @@ import { ContactusComponent } from './components/contactus/contactus.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BannerHotComponent } from './components/banner-hot/banner-hot.component';
 import { DialogModule } from 'primeng/dialog';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 const routes: Routes = [
     {
@@ -22,14 +23,16 @@ const routes: Routes = [
         GalleryComponent,
         IncentiveComponent,
         ContactusComponent,
-        BannerHotComponent
+        BannerHotComponent,
+        CarouselComponent
     ],
     exports: [
         BannerComponent,
         GalleryComponent,
         IncentiveComponent,
         ContactusComponent,
-        BannerHotComponent
+        BannerHotComponent,
+        CarouselComponent
     ]
 })
 export class UiModule {}
