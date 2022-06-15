@@ -62,7 +62,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     private _addUser(user: User) {
         this.usersService
             .createUser(user)
-            .pipe(takeUntil(this.endsubs$))
+
             .subscribe(
                 (user: User) => {
                     this.messageService.add({
@@ -147,6 +147,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
             id: this.currentUserId,
             name: this.userForm['name'].value,
             email: this.userForm['email'].value,
+            password: this.userForm['password'].value,
             phone: this.userForm['phone'].value,
             isAdmin: this.userForm['isAdmin'].value,
             street: this.userForm['street'].value,
