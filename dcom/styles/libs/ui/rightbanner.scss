@@ -1,0 +1,19 @@
+.right-banner{
+  display: block;
+  width: 285px;
+  height: 415px;
+  .right-banner-items{
+    min-height: calc(33.33333% - 20px);
+    margin-bottom: 15.5px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+
+    img{
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}
