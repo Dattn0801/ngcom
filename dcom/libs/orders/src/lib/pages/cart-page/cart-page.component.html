@@ -1,10 +1,42 @@
 <div class="cart-page">
+    <div class="bread-crum">
+        <ul
+            class="list-none p-0 m-0 surface-card flex font-medium overflow-y-hidden overflow-x-auto"
+        >
+            <span class="ml-7"></span>
+            <li class="relative p-3">
+                <a href="/" class="cursor-pointer"><i class="pi pi-home text-orange-500"></i></a>
+            </li>
+            <li class="relative p-3">
+                <div
+                    class="absolute left-0 top-0 z-1"
+                    style="
+                        border-left: 20px solid var(--surface-card);
+                        border-top: 26px solid transparent;
+                        border-bottom: 26px solid transparent;
+                        width: 0;
+                        height: 0;
+                    "
+                ></div>
+                <a href="/products" class="cursor-pointer text-orange-500 pl-4 white-space-nowrap"
+                    >Giỏ hàng: {{ cartCount }} sản phẩm</a
+                >
+                <div
+                    class="absolute top-0"
+                    style="
+                        left: 1px;
+                        border-left: 20px solid var(--surface-border);
+                        border-top: 26px solid transparent;
+                        border-bottom: 26px solid transparent;
+                        width: 0;
+                        height: 0;
+                    "
+                ></div>
+            </li>
+        </ul>
+    </div>
     <div class="grid">
-        <div class="col-8">
-            <div>
-                <h4 class="text-center">Giỏ hàng: {{ cartCount }} Sản phẩm</h4>
-            </div>
-
+        <div class="col-8 mt-6">
             <div class="cart-item mb-5" *ngFor="let cartItem of cartItemsDetailed">
                 <div class="grid p-fluid">
                     <div class="col-2 cart-item-image">
