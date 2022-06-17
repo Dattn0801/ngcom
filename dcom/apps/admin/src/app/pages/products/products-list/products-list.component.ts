@@ -28,7 +28,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
     _deleteProduct(productId: string) {
         this.confirmationService.confirm({
-            message: 'Bạn có muốn xóa danh mục này không',
+            message: 'Bạn có muốn xóa sản phẩm này không',
             header: 'Xóa danh mục',
             icon: 'pi pi-exclamation-triangle',
             acceptLabel: 'Có',
