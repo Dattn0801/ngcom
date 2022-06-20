@@ -80,7 +80,7 @@
             <div class="product-price">
                 {{ product.price | currency: 'VND' }}
                 <span class="price-before">
-                    <!-- {{ product.price + 18 }} -->
+                    {{ product.price + 18 | currency: 'VND' }}
                 </span>
             </div>
             <div class="product-quantity">
