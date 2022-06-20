@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
         if (this.loginFormGroup.invalid) return;
         this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe(
             (user) => {
-                //console.log(user);
                 this.authError = false;
                 this.localstorage.setToken(user['token']);
                 this.router['navigate'](['/']);
