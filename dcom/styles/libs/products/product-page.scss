@@ -13,7 +13,7 @@
     font-weight: 600;
     border-bottom: 1px solid var(--surface-300);
     padding-bottom: .5em;
-    padding: 25px 0;
+    color:$primary-color;
     .price-before{
       font-size:  .7em;
       margin-left: 10px;
@@ -42,4 +42,7 @@
   product-rich-desc{
     line-height: 1.6;
   }
+}
+.p-rating .p-rating-icon.pi-star-fill{
+  color: #FFD700;
 }

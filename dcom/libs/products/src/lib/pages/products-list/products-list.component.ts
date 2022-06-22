@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
+import { takeUntil } from 'rxjs';
 import { Category } from '../../models/category';
 import { Product } from '../../models/product';
 import { CategoriesService } from '../../services/categories.service';
@@ -15,7 +16,7 @@ export class ProductsListComponent implements OnInit {
     products: Product[] = [];
     categories: Category[] = [];
     isCategoryPage!: boolean;
-
+    category: Category;
     //sort
     sortOptions: SelectItem[];
     sortOrder: number;
@@ -34,7 +35,6 @@ export class ProductsListComponent implements OnInit {
             params['categoryid'] ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
         });
         this._getCate();
-
         this.sortOptions = [
             { label: 'Từ thấp đến cao', value: '!price' },
             { label: 'Từ cao đến thấp', value: 'price' }
